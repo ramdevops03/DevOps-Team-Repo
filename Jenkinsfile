@@ -14,14 +14,14 @@ pipeline {
         }
         stage('Pushing to artifactory'){
        steps {
-        nexusArtifactUploader artifacts: [[artifactId: 'web', classifier: '', file: 'target/web.war', type: 'war']], credentialsId: 'user-nexus', groupId: 'project', nexusUrl: '52.23.208.165:8081/nexus', nexusVersion: 'nexus2', protocol: 'http', repository: 'releases', version: '1.3'
+        nexusArtifactUploader artifacts: [[artifactId: 'web', classifier: '', file: 'target/web.war', type: 'war']], credentialsId: 'user-nexus', groupId: 'project', nexusUrl: '52.23.208.165:8081/nexus', nexusVersion: 'nexus2', protocol: 'http', repository: 'releases', version: '1.4'
        }     
         }
-        stage('Deploy Code In Tomcat Dev Server') {
-            steps {
-        deploy adapters: [tomcat8(credentialsId: 'tom', path: '', url: 'http://52.23.208.165:8082/')], contextPath: 'http://52.23.208.165:8082/', war: '**/*.war'
-            }
-        }
+        stage('Download artifact'){
+       steps {
+        wget http://52.23.208.165:8081/nexus/content/repositories/releases/project/web/1.4/web-1.4.war
+       }     
+        }     
        
         stage('Deploy Code In Tomcat Dev Server-1') {
             steps {
