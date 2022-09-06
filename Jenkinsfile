@@ -14,12 +14,12 @@ pipeline {
         }
         stage('Pushing to artifactory'){
        steps {
-        nexusArtifactUploader artifacts: [[artifactId: 'web', classifier: '', file: 'target/web.war', type: 'war']], credentialsId: 'user-nexus', groupId: 'project', nexusUrl: '52.23.208.165:8081/nexus', nexusVersion: 'nexus2', protocol: 'http', repository: 'releases', version: '1.4'
+        nexusArtifactUploader artifacts: [[artifactId: 'web', classifier: '', file: 'target/web.war', type: 'war']], credentialsId: 'user-nexus', groupId: 'project', nexusUrl: '52.23.208.165:8081/nexus', nexusVersion: 'nexus2', protocol: 'http', repository: 'releases', version: '1.5'
        }     
         }
         stage('Download artifact'){
        steps {
-        sh 'wget http://52.23.208.165:8081/nexus/content/repositories/releases/project/web/1.4/web-1.4.war'
+        sh 'wget http://52.23.208.165:8081/nexus/content/repositories/releases/project/web/1.5/web-1.5.war'
        }     
         }     
        
