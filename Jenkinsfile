@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Pushing to artifactory'){
        steps {
-        nexusArtifactUploader artifacts: [[artifactId: 'web', classifier: '', file: 'target/web-1.2.war', type: 'war']], credentialsId: 'user-nexus', groupId: 'project', nexusUrl: '52.23.208.165:8081/nexus', nexusVersion: 'nexus2', protocol: 'http', repository: 'releases', version: '1.2'
+        nexusArtifactUploader artifacts: [[artifactId: 'web', classifier: '', file: 'target/web.war', type: 'war']], credentialsId: 'user-nexus', groupId: 'project', nexusUrl: '52.23.208.165:8081/nexus', nexusVersion: 'nexus2', protocol: 'http', repository: 'releases', version: '1.2'
        }     
         }
         stage('Deploy Code In Tomcat Dev Server') {
