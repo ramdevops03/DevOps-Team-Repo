@@ -19,6 +19,12 @@ pipeline {
         }
         stage('Deploy Code In Tomcat Dev Server') {
             steps {
+        deploy adapters: [tomcat8(credentialsId: 'tom', path: '', url: 'http://52.23.208.165:8082/')], contextPath: 'http://52.23.208.165:8082/', war: '**/*.war'
+            }
+        }
+       
+        stage('Deploy Code In Tomcat Dev Server') {
+            steps {
                sh 'cp target/*.war /home/jenkins/apache-tomcat-8.5.82/webapps'
             }
         }
