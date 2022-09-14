@@ -5,7 +5,7 @@ provider "aws" {
 }
 
 resource "aws_instance" "ec2instance" {
-  ami           = "ami-05fa00d4c63e32376"
+  ami           = "__AMIID__"
   instance_type = "t2.micro"
   subnet_id = "subnet-06577657b4ae427f9"
   key_name = "firstawskey"
