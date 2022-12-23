@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Git Clone') {
+            steps {
+                git 'https://github.com/ramdevops03/Development-Team-Repo.git'
+            }
+        }
+        stage('Build Application Code') {
+            steps {
+                sh 'mvn package -f pom.xml'
+            }
+        }
+        stage('Push Artifacts to CodeArtifactory') {
+            steps {
+                echo 'Pushed .war files'
+            }
+        }
+        stage('Deploy code to Production') {
+            steps {
+                echo 'Deploy to Prod'
+            }
+        }
+        
+    }
+ 
+}
