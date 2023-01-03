@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone Code') {
+            steps {
+                git 'https://github.com/ramdevops03/Development-Team-Repo.git'
+            }
+        }
+        stage('Build Application Code') {
+            steps {
+                sh 'mvn clean -f pom.xml'
+            }
+        }
+    }
