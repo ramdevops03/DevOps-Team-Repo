@@ -12,5 +12,10 @@ pipeline {
                 sh 'mvn package -f pom.xml'
             }
         }
+        stage('Upload Artifact to Nexus') {
+            steps {
+                nexusArtifactUploader artifacts: [[artifactId: 'web', classifier: '', file: 'target/web.war', type: 'war']], credentialsId: 'nexus_user', groupId: 'project', nexusUrl: '18.205.159.165:8081/nexus', nexusVersion: 'nexus2', protocol: 'http', repository: 'releases', version: '2.0'
+            }
+        }
     }
 }
