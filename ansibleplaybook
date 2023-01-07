@@ -1,0 +1,26 @@
+---
+- hosts: localhost
+  gather_facts: yes
+
+  vars:
+     region: us-west-1
+     ami_id: ami-0577b787189839998
+     instance_type: t2.micro
+     security_group: ansiblesgroup
+     keypair: ansible4
+     ackey: 
+     sekey: 
+
+  tasks:
+  - name: Laucing EC2 instance
+    ec2:
+        region: "{{ region }}"
+        image: "{{ ami_id }}"
+        instance_type: "{{ instance_type }}"
+        group: "{{ security_group }}"
+        key_name: "{{ keypair }}"
+        aws_access_key: "{{ ackey }}"
+        aws_secret_key: "{{ sekey }}"
+    register: ec2facts
+
+  - debug: var=ec2facts
