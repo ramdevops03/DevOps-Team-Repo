@@ -14,8 +14,20 @@ pipeline {
         }
         stage('Upload Artifact to Nexus') {
             steps {
-                nexusArtifactUploader artifacts: [[artifactId: 'web', classifier: '', file: 'target/web.war', type: 'war']], credentialsId: 'nexus_user', groupId: 'project', nexusUrl: '18.205.159.165:8081/nexus', nexusVersion: 'nexus2', protocol: 'http', repository: 'releases', version: '2.0'
+                nexusArtifactUploader artifacts: [[artifactId: 'web', classifier: '', file: 'target/web.war', type: 'war']], credentialsId: 'nexus_user', groupId: 'project', nexusUrl: '44.203.179.219:8081/nexus', nexusVersion: 'nexus2', protocol: 'http', repository: 'releases', version: '2.2'
             }
         }
+        stage('Download artifact'){
+       steps {
+        sh 'wget http://44.203.179.219:8081/nexus/content/repositories/releases/project/web/2.2/web-2.2.war'
+       }     
+        }     
+       
+        stage('Deploy Code In Tomcat Dev Server-1') {
+            steps {
+               sh 'cp web**.*.war /home/jenkins/apache-tomcat-8.5.82/webapps'
+            }
+        }
+        
     }
 }
