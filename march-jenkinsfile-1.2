@@ -2,7 +2,7 @@ pipeline {
     agent any
     parameters {
         choice(name: 'VERSION', choices: ['1.0', '1.1', '1.2'])
-        boolenParam(name: 'Run', defaultValue: true)
+        booleanParam(name: 'Run', defaultValue: true)
     }
     stages {
         stage('Clone Application Code') {
