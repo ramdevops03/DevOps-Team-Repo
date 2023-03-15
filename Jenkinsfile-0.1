@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+    stages {
+        stage("Clone") {
+            steps {
+                echo 'Cloning Application code...'
+            }
+        }
+        stage("build") {
+            steps {
+                echo 'Build Application code...'
+            }
+        }
+        stage("deploy") {
+            steps {
+               echo 'Deploying Application....'
+            }
+        }
+    }   
+}
