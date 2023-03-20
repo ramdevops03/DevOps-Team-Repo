@@ -15,6 +15,12 @@ pipeline {
                 sh 'mvn package -f pom.xml'
             }
         }
+        
+        stage('Build') {
+            steps {
+                sh 'nexusArtifactUploader credentialsId: 'nexuskey', groupId: 'project', nexusUrl: '34.201.31.37:8081/nexus', nexusVersion: 'nexus2', protocol: 'http', repository: 'releases', version: '2.3''
+            }
+        }
         stage('Deploy') {
             steps {
                 echo 'Deploy Application Code'
