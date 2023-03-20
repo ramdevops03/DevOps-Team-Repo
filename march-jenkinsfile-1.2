@@ -16,9 +16,9 @@ pipeline {
             }
         }
         
-        stage('Build') {
+        stage('Upload Artifact to Nexus') {
             steps {
-                sh 'nexusArtifactUploader credentialsId: 'nexuskey', groupId: 'project', nexusUrl: '34.201.31.37:8081/nexus', nexusVersion: 'nexus2', protocol: 'http', repository: 'releases', version: '2.3''
+                nexusArtifactUploader credentialsId: 'nexuskey', groupId: 'project', nexusUrl: '34.201.31.37:8081/nexus', nexusVersion: 'nexus2', protocol: 'http', repository: 'releases', version: '2.3'
             }
         }
         stage('Deploy') {
