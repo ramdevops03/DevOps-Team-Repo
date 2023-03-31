@@ -1,7 +1,7 @@
 pipeline {
     agent any
     parameters {
-        choice(name: 'VERSION', choices: ['1.0', '1.1', '1.2'])
+        choice(name: 'VERSION', choices: ['DEV', 'SIT', 'PERF'])
         booleanParam(name: 'Run', defaultValue: true)
     }
     stages {
